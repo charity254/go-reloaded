@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	//"io"
 	"log"
 	"os"
 	"strings"
@@ -15,6 +14,7 @@ func main() {
 		fmt.Println("You need to pass two file names")
 		return
 	}
+
 	input := argu[0]
 	r, err := os.ReadFile(input)
 	if err != nil {
@@ -22,17 +22,16 @@ func main() {
 	}
 
 	content := string(r)
-	// fcontent := strings.Fields(content)
-	// result := strings.Join(fcontent, " ")
-
-	for i := 0
-	// fmt.Println(fcontent)
+	tokens := tokenize(content)
+	
+	// for _, char := range tokens {
+	// 	fmt.Printf("%s\n", char)
+	// }
 	output := argu[1]
+	result := strings.Join(tokens, "\n") 
+
 	err = os.WriteFile(output, []byte(result), 0644)
 	if err!= nil {
-		
 		log.Fatal(err)
 	}
-
-
 }
