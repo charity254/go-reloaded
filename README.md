@@ -1,8 +1,4 @@
-Invalid numbers or formatting
-
-Test it: "this is exciting (up, 2)" → "this IS EXCITING"
-Let me know when you're ready to tackle this!i will handle that tommorrow, for now give me an updated readme for what we have done today and a proper commit message for the changes we have added to day12:10 AMUpdated README:
-markdown# Text Modifier Tool
+# Text Modifier Tool
 
 A Go program that processes text files and applies various transformations including number base conversions, case modifications, and punctuation formatting.
 
