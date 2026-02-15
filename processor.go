@@ -3,7 +3,19 @@ package main
 import (
 	"strconv"
 	"strings"
+	"unicode"
 )
+func isPunctuation (s string) bool {
+	if len(s) == 0 {
+		return false
+	}
+	for _, char := range s {
+		if !unicode.IsPunct(char) {
+			return false
+		}
+	}
+	return true
+}
 
 func hex (str  []string) []string {
 	for i := 0; i < len(str); i++ {
@@ -157,6 +169,73 @@ func cap (str []string) []string {
 
 			str = append(str[:i], str[i+1:]... )
 			i--
+		}
+	}
+	return str
+}
+
+func punctuation(words []string) string {
+	if len(words) == 0 {
+		return ""
+	}
+	var result strings.Builder
+
+	insideQuotes := false
+
+	for i:=0; i<len(words); i++ {
+		currentWord := words[i]
+
+		isQuote := currentWord == "'"
+		if i > 0 {
+			prevWord := words[i-1]
+			prevIsQuote := prevWord == "'"
+
+			curIsPunc := isPunctuation(currentWord)
+
+			addSpace := true
+
+			if prevIsQuote && insideQuotes {
+				addSpace = false
+			} else if isQuote && insideQuotes {
+				addSpace = false
+			} else if curIsPunc && !isQuote {
+				addSpace = false
+			}
+			if addSpace {
+				result.WriteString(" ")
+			}
+		}
+		result.WriteString(currentWord)
+
+		if isQuote {
+			insideQuotes = !insideQuotes
+		}
+	}
+	return result.String()
+}
+
+func article(str []string) []string {
+	if len(str) == 0 {
+		return str
+	}
+	for i :=0; i < len(str); i++ {
+		curWord := strings.ToLower(str[i])
+
+		if curWord == "a" {
+			if i+1 < len(str) {
+				nextWord := str[i+1]
+				if len(nextWord) > 0 {
+					fChar := strings.ToLower(string(nextWord[0]))
+
+					if fChar == "a" || fChar == "e" || fChar == "i" || fChar == "o" || fChar == "u" || fChar == "h" {
+						if str[i] == "A" {
+							str[i] = "An"
+						} else {
+							str[i] = "an"
+						}
+					}
+				}
+			}
 		}
 	}
 	return str
