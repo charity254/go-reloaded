@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strings"
+	//"strings"
 )
 
 func main() {
@@ -23,14 +23,15 @@ func main() {
 
 	content := string(r)
 	tokens := tokenize(content)
-	tokens = cap(lower(upper(bin(hex(tokens)))))
+	tokens = article(cap(lower(upper(bin(hex(tokens))))))
+	result := punctuation(tokens)
 
 	
 	// for _, char := range tokens {
 	// 	fmt.Printf("%s\n", char)
 	// }
 	output := argu[1]
-	result := strings.Join(tokens, " ") 
+	//result := strings.Join(result, " ") 
 
 	err = os.WriteFile(output, []byte(result), 0644)
 	if err!= nil {
