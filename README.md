@@ -20,7 +20,7 @@ This tool reads a text file, applies a series of modifications based on special 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/go-reloaded.git
+git clone https://github.com/charity254/go-reloaded.git
 cd go-reloaded
 ```
 
@@ -240,8 +240,8 @@ It was the best of times, it was the worst of TIMES, it was the age of wisdom, I
 
 ## Author
 
-Your Name
+Charity Ochieng
 
 ## License
 
-This project is part of a coding challenge/learning exercise.
+This project is part of a coding challenge.
